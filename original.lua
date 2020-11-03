@@ -1,3 +1,5 @@
+-- source: https://github.com/nvim-lua/telescope.nvim
+--
 -- The fzy matching algorithm
 --
 -- by Seth Warn <https://github.com/swarn>

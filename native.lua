@@ -7,17 +7,18 @@
 -- > matches on consecutive letters and starts of words. This allows matching
 -- > using acronyms or different parts of the path." - J Hawthorn
 
-local has_path, path = pcall(require, 'telescope.path')
-if not has_path then
-  path = {
-    separator = '/'
-  }
-end
-
+local arch_aliases = {
+  ['x64'] = 'x86_64',
+}
 
 local ffi = require'ffi'
 
-local native = ffi.load('./libfzy.so')
+local os   = jit.os:lower()
+local arch = (arch_aliases[jit.arch] or arch):lower()
+
+local library_path = './static/libfzy-' .. os .. '-' .. arch .. '.so'
+
+local native = ffi.load(library_path)
 
 ffi.cdef[[
 int has_match(const char *needle, const char *haystack, int is_case_sensitive);
@@ -28,22 +29,8 @@ double match_positions(const char *needle, const char *haystack, uint32_t *posit
 
 ]]
 
--- local needle = 'fil'
--- local haystack = '_file_'
--- 
--- print(native.has_match(needle, haystack, false))
--- 
--- local positions_len = #needle
--- local positions = ffi.new('uint32_t[' .. positions_len .. ']', {})
--- 
--- print(native.match_positions(needle, haystack, positions, false))
--- 
--- local positions_string = '{ '
--- for i = 0, positions_len - 1, 1  do
---   positions_string = positions_string .. tostring(positions[i]) .. ', '
--- end
--- positions_string = positions_string .. ' }'
--- print(positions_string)
+
+-- Constants
 
 local SCORE_GAP_LEADING = -0.005
 local SCORE_GAP_TRAILING = -0.005
@@ -71,7 +58,7 @@ end
 local function positions_to_lua(positions, length)
   local result = {}
   for i = 0, length - 1, 1  do
-    table.insert(result, positions[i])
+    table.insert(result, positions[i] + 1)
   end
   return result
 end

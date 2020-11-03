@@ -34,7 +34,7 @@ end
 
 function main()
 
-  local lines = lines_from('f-100000.txt')
+  local lines = lines_from('./tests/files.txt')
 
   print('Lines: ' .. #lines)
   print('')

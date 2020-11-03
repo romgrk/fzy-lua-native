@@ -1,5 +1,5 @@
 
-# fzy-lua
+# fzy-lua-native
 
 Luajit FFI bindings to FZY.
 

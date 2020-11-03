@@ -5,8 +5,8 @@
 -- Distributed under terms of the MIT license.
 --
 
-local original = require'original'
-local native = require'native'
+local original = require'lua.original'
+local native   = require'lua.native'
 
 local function lines_from(file)
   lines = {}

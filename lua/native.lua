@@ -16,18 +16,35 @@ local ffi = require'ffi'
 local os   = jit.os:lower()
 local arch = (arch_aliases[jit.arch] or arch):lower()
 
-local library_path = './static/libfzy-' .. os .. '-' .. arch .. '.so'
+
+-- ffi.load() doesn't respect anything but the actual path OR a system library path
+local dirname = string.sub(debug.getinfo(1).source, 2, string.len('/native.lua') * -1)
+local library_path = dirname .. '../static/libfzy-' .. os .. '-' .. arch .. '.so'
 
 local native = ffi.load(library_path)
+
 
 ffi.cdef[[
 int has_match(const char *needle, const char *haystack, int is_case_sensitive);
 
 // typedef double score_t;
-// match_positions originally returns score_t;
+// match* originally returns score_t;
+
+double match(const char *needle, const char *haystack, int is_case_sensitive);
 double match_positions(const char *needle, const char *haystack, uint32_t *positions, int is_case_sensitive);
 
 ]]
+
+-- @param positions - the C positions object
+-- @param length - length of positions
+-- @returns - lua array of positions, 1-indexed
+local function positions_to_lua(positions, length)
+  local result = {}
+  for i = 0, length - 1, 1  do
+    table.insert(result, positions[i] + 1)
+  end
+  return result
+end
 
 
 -- Constants
@@ -52,15 +69,10 @@ function fzy.has_match(needle, haystack)
 end
 
 function fzy.score(needle, haystack)
-  -- TBD
-end
-
-local function positions_to_lua(positions, length)
-  local result = {}
-  for i = 0, length - 1, 1  do
-    table.insert(result, positions[i] + 1)
-  end
-  return result
+  local length = #needle
+  local is_case_sensitive = false
+  local score = native.match_positions(needle, haystack, is_case_sensitive)
+  return score
 end
 
 function fzy.positions(needle, haystack)
@@ -71,9 +83,7 @@ function fzy.positions(needle, haystack)
   -- TODO: return score
   local score = native.match_positions(needle, haystack, positions, is_case_sensitive)
 
-  local result = positions_to_lua(positions, length)
-
-  return result
+  return positions_to_lua(positions, length)
 end
 
 

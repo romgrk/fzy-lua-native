@@ -14,7 +14,7 @@ local arch_aliases = {
 local ffi = require'ffi'
 
 local os   = jit.os:lower()
-local arch = (arch_aliases[jit.arch] or arch):lower()
+local arch = (arch_aliases[jit.arch] or jit.arch):lower()
 
 
 -- ffi.load() doesn't respect anything but the actual path OR a system library path

@@ -5,6 +5,9 @@
 
 CC=gcc
 OS=`uname | tr A-Z a-z`
+ifeq ($(findstring mingw,$(OS)),mingw)
+    OS='windows'
+endif
 ARCH=`uname -m`
 
 all:

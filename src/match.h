@@ -3,10 +3,11 @@
 #define MATCH_H MATCH_H
 
 #include <math.h>
+#include <stdint.h>
 
-#ifdef _WIN32
-typedef uint32_t u_int32_t;
-#endif
+/* #ifdef _WIN32
+ * typedef uint32_t u_int32_t;
+ * #endif */
 
 typedef double score_t;
 #define SCORE_MAX INFINITY
@@ -15,7 +16,7 @@ typedef double score_t;
 #define MATCH_MAX_LEN 1024
 
 int has_match(const char *needle, const char *haystack, int is_case_sensitive);
-score_t match_positions(const char *needle, const char *haystack, u_int32_t *positions, int is_case_sensitive);
+score_t match_positions(const char *needle, const char *haystack, uint32_t *positions, int is_case_sensitive);
 score_t match(const char *needle, const char *haystack, int is_case_sensitive);
 
 #endif

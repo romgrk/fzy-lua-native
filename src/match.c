@@ -162,7 +162,7 @@ score_t match(const char *needle, const char *haystack, int is_case_sensitive) {
 	return last_M[m - 1];
 }
 
-score_t match_positions(const char *needle, const char *haystack, u_int32_t *positions, int is_case_sensitive) {
+score_t match_positions(const char *needle, const char *haystack, uint32_t *positions, int is_case_sensitive) {
 	if (!*needle)
 		return SCORE_MIN;
 

@@ -4,6 +4,10 @@
 
 #include <math.h>
 
+#ifdef _WIN32
+typdef uint32_t u_int32_t;
+#endif
+
 typedef double score_t;
 #define SCORE_MAX INFINITY
 #define SCORE_MIN -INFINITY

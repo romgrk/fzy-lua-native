@@ -5,7 +5,7 @@
 #include <math.h>
 
 #ifdef _WIN32
-typdef uint32_t u_int32_t;
+typedef uint32_t u_int32_t;
 #endif
 
 typedef double score_t;

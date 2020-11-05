@@ -17,7 +17,7 @@ local arch_aliases = {
 
 local ffi = require'ffi'
 
-local os   = (arch_aliases[jit.os:lower()] or jit.os:lower())
+local os   = (os_aliases[jit.os:lower()] or jit.os:lower())
 local arch = (arch_aliases[jit.arch:lower()] or jit.arch:lower())
 
 

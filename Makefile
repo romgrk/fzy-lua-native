@@ -3,7 +3,7 @@
 # romgrk, 2020-11-02 21:58
 #
 
-CC=cc
+CC=gcc
 OS=`uname | tr A-Z a-z`
 ARCH=`uname -m`
 

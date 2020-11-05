@@ -130,13 +130,13 @@ score_t match(const char *needle, const char *haystack, int is_case_sensitive) {
 		 */
 		return SCORE_MIN;
 	}
-	// else if (n == m) {
-	// 	/* Since this method can only be called with a haystack which
-	// 	 * matches needle. If the lengths of the strings are equal the
-	// 	 * strings themselves must also be equal (ignoring case).
-	// 	 */
-	// 	return SCORE_MAX;
-	// }
+	else if (n == m) {
+		/* Since this method can only be called with a haystack which
+		 * matches needle. If the lengths of the strings are equal the
+		 * strings themselves must also be equal (ignoring case).
+		 */
+		return SCORE_MAX;
+	}
 
 	/*
 	 * D[][] Stores the best score for this position ending with a match.
@@ -180,16 +180,16 @@ score_t match_positions(const char *needle, const char *haystack, uint32_t *posi
 		 */
 		return SCORE_MIN;
 	}
-	// else if (n == m) {
-	// 	/* Since this method can only be called with a haystack which
-	// 	 * matches needle. If the lengths of the strings are equal the
-	// 	 * strings themselves must also be equal (ignoring case).
-	// 	 */
-	// 	if (positions)
-	// 		for (int i = 0; i < n; i++)
-	// 			positions[i] = i;
-	// 	return SCORE_MAX;
-	// }
+	else if (n == m) {
+		/* Since this method can only be called with a haystack which
+		 * matches needle. If the lengths of the strings are equal the
+		 * strings themselves must also be equal (ignoring case).
+		 */
+		if (positions)
+			for (int i = 0; i < n; i++)
+				positions[i] = i;
+		return SCORE_MAX;
+	}
 
 	/*
 	 * D[][] Stores the best score for this position ending with a match.

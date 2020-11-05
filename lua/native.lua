@@ -7,14 +7,18 @@
 -- > matches on consecutive letters and starts of words. This allows matching
 -- > using acronyms or different parts of the path." - J Hawthorn
 
+local os_aliases = {
+  ['osx'] = 'darwin',
+}
+
 local arch_aliases = {
   ['x64'] = 'x86_64',
 }
 
 local ffi = require'ffi'
 
-local os   = jit.os:lower()
-local arch = (arch_aliases[jit.arch] or jit.arch):lower()
+local os   = (arch_aliases[jit.os:lower()] or jit.os:lower())
+local arch = (arch_aliases[jit.arch:lower()] or jit.arch:lower())
 
 
 -- ffi.load() doesn't respect anything but the actual path OR a system library path

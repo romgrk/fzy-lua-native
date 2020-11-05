@@ -8,6 +8,15 @@
 local original = require'lua.original'
 local native   = require'lua.native'
 
+local function print_table(tbl)
+  local result = '{ '
+  for i, v in ipairs(tbl) do
+    result = result .. v .. (i == #tbl and '' or ', ')
+  end
+  result = result .. ' }'
+  print(result)
+end
+
 local function lines_from(file)
   lines = {}
   for line in io.lines(file) do 
@@ -41,6 +50,11 @@ function main()
 
   local time, total = benchmark(function() return native.filter('f', lines) end)
   print('Native:')
+  print(' -> Total: ' .. total)
+  print(' -> Time:  ' .. time .. ' ms')
+
+  local time, total = benchmark(function() return native.filter_many('f', lines) end)
+  print('Native (many):')
   print(' -> Total: ' .. total)
   print(' -> Time:  ' .. time .. ' ms')
 

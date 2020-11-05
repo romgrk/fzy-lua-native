@@ -248,3 +248,19 @@ score_t match_positions(const char *needle, const char *haystack, uint32_t *posi
 
 	return result;
 }
+
+void match_positions_many(const char *needle,
+		const char **haystacks,
+		uint32_t length,
+		score_t *scores,
+		uint32_t *positions,
+		int is_case_sensitive
+	) {
+	uint32_t needle_len = strlen(needle);
+
+	for (uint32_t i = 0; i < length; i++) {
+		uint32_t *current_positions = &positions[i * needle_len];
+		score_t score = match_positions(needle, haystacks[i], current_positions, is_case_sensitive);
+		scores[i] = score;
+	}
+}

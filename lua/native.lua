@@ -36,6 +36,13 @@ int has_match(const char *needle, const char *haystack, int is_case_sensitive);
 
 double match(const char *needle, const char *haystack, int is_case_sensitive);
 double match_positions(const char *needle, const char *haystack, uint32_t *positions, int is_case_sensitive);
+void match_positions_many(
+  const char *needle,
+  const char **haystacks,
+  uint32_t length,
+  double *scores,
+  uint32_t *positions,
+  int is_case_sensitive);
 
 ]]
 
@@ -46,6 +53,19 @@ local function positions_to_lua(positions, length)
   local result = {}
   for i = 0, length - 1, 1  do
     table.insert(result, positions[i] + 1)
+  end
+  return result
+end
+
+local function positions_to_lua_many(numbers, length, n)
+  local result = {}
+  local current = {}
+  for i = 0, length - 1, 1  do
+    table.insert(current, numbers[i] + 1)
+    if #current == n then
+      table.insert(result, current)
+      current = {}
+    end
   end
   return result
 end
@@ -90,6 +110,27 @@ function fzy.positions(needle, haystack)
   return positions_to_lua(positions, length)
 end
 
+function fzy.positions_many(needle, haystacks)
+  local n = #needle
+  local length = #haystacks
+  local scores = ffi.new('double[' .. (length) .. ']', {})
+  local positions = ffi.new('uint32_t[' .. (n * length) .. ']', {})
+  local is_case_sensitive = false
+
+  local haystacks_arg = ffi.new("const char*[" .. (length + 1) .. "]", haystacks)
+
+  -- TODO: return score
+  local score = native.match_positions_many(
+    needle,
+    haystacks_arg,
+    length,
+    scores,
+    positions,
+    is_case_sensitive)
+
+  return positions_to_lua_many(positions, length, n)
+end
+
 
 
 -- If strings a or b are empty or too long, `fzy.score(a, b) == fzy.get_score_min()`.
@@ -112,7 +153,7 @@ end
 
 
 function fzy.filter(needle, lines)
-  results = {}
+  local results = {}
 
   for i = 1, #lines do
     local line = lines[i]
@@ -122,6 +163,19 @@ function fzy.filter(needle, lines)
     end
   end
   return results
+end
+
+function fzy.filter_many(needle, lines)
+  local filtered_lines = {}
+
+  for i = 1, #lines do
+    local line = lines[i]
+    if native.has_match(needle, line, false) == 1 then
+      table.insert(filtered_lines, line)
+    end
+  end
+  local positions = fzy.positions_many(needle, filtered_lines)
+  return positions
 end
 
 return fzy

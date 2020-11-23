@@ -93,9 +93,8 @@ function fzy.has_match(needle, haystack)
 end
 
 function fzy.score(needle, haystack)
-  local length = #needle
   local is_case_sensitive = false
-  local score = native.match_positions(needle, haystack, is_case_sensitive)
+  local score = native.match_positions(needle, haystack, nil, is_case_sensitive)
   return score
 end
 

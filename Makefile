@@ -11,7 +11,7 @@ endif
 ARCH=`uname -m`
 
 all:
-	$(CC) -c -Wall -static -fpic -o ./src/match.o ./src/match.c
+	$(CC) -Ofast -c -Wall -static -fpic -o ./src/match.o ./src/match.c
 	$(CC) -shared -o ./static/libfzy-$(OS)-$(ARCH).so ./src/match.o
 
 

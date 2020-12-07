@@ -156,6 +156,7 @@ function fzy.positions(needle, haystack)
   local D = {}
   local M = {}
   compute(needle, haystack, D, M)
+  local score = M[n][m]
 
   local positions = {}
   local match_required = false
@@ -174,7 +175,7 @@ function fzy.positions(needle, haystack)
     end
   end
 
-  return positions
+  return positions, score
 end
 
 -- If strings a or b are empty or too long, `fzy.score(a, b) == fzy.get_score_min()`.

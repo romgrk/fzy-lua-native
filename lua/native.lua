@@ -104,10 +104,9 @@ function fzy.positions(needle, haystack)
   local positions = ffi.new('uint32_t[' .. length .. ']', {})
   local is_case_sensitive = false
 
-  -- TODO: return score
   local score = native.match_positions(needle, haystack, positions, is_case_sensitive)
 
-  return positions_to_lua(positions, length)
+  return positions_to_lua(positions, length), score
 end
 
 function fzy.positions_many(needle, haystacks)
@@ -119,7 +118,6 @@ function fzy.positions_many(needle, haystacks)
 
   local haystacks_arg = ffi.new("const char*[" .. (length + 1) .. "]", haystacks)
 
-  -- TODO: return score
   local score = native.match_positions_many(
     needle,
     haystacks_arg,
@@ -128,7 +126,7 @@ function fzy.positions_many(needle, haystacks)
     positions,
     is_case_sensitive)
 
-  return positions_to_lua_many(positions, length, n)
+  return positions_to_lua_many(positions, length, n), score
 end
 
 

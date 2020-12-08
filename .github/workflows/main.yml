@@ -7,12 +7,12 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: ubuntu-latest
-            arch: x86
-          - os: macos-latest
-            arch: x86
-          - os: windows-latest
-            arch: x86
+          #- os: ubuntu-latest
+          #  arch: x86
+          #- os: macos-latest
+          #  arch: x86
+          #- os: windows-latest
+          #  arch: x86
           - os: ubuntu-latest
             arch: aarch64
     steps:

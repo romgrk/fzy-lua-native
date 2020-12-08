@@ -33,7 +33,7 @@ jobs:
                 apt install -q -y build-essential
                 ;;
             esac
-          run: make
+          run: make && rm build-log.txt
       - if: matrix.arch == 'x86'
         run: make
       - uses: romgrk/publish-to-github@master

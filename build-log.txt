@@ -1,51 +1,51 @@
 Hit:1 http://azure.archive.ubuntu.com/ubuntu bionic InRelease
-Get:2 http://azure.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
-Get:3 http://azure.archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
+Hit:2 https://dl.yarnpkg.com/debian stable InRelease
+Hit:3 https://storage.googleapis.com/bazel-apt stable InRelease
 Get:4 http://dl.google.com/linux/chrome/deb stable InRelease [1811 B]
-Get:5 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
-Hit:6 https://storage.googleapis.com/bazel-apt stable InRelease
-Hit:7 https://download.mono-project.com/repo/ubuntu stable-bionic InRelease
-Get:8 https://packages.microsoft.com/repos/azure-cli bionic InRelease [3964 B]
-Hit:9 https://dl.yarnpkg.com/debian stable InRelease
-Get:10 http://packages.cloud.google.com/apt cloud-sdk InRelease [6739 B]
-Get:11 https://packages.microsoft.com/ubuntu/18.04/prod bionic InRelease [4002 B]
-Get:12 https://cli-assets.heroku.com/apt ./ InRelease [2879 B]
-Ign:14 https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 InRelease
-Get:15 https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 Release [5374 B]
-Get:16 https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 Release.gpg [801 B]
-Hit:17 http://ppa.launchpad.net/ansible/ansible/ubuntu bionic InRelease
-Get:13 https://packages.cloud.google.com/apt kubernetes-xenial InRelease [9383 B]
-Hit:18 http://apt.postgresql.org/pub/repos/apt bionic-pgdg InRelease
-Get:20 http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_18.04  InRelease [1613 B]
-Ign:21 https://dl.bintray.com/sbt/debian  InRelease
-Hit:22 http://ppa.launchpad.net/apt-fast/stable/ubuntu bionic InRelease
-Get:23 https://dl.bintray.com/sbt/debian  Release [815 B]
-Hit:24 http://ppa.launchpad.net/git-core/ppa/ubuntu bionic InRelease
-Get:25 http://azure.archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [1789 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu bionic-updates/main Translation-en [376 kB]
-Get:27 http://azure.archive.ubuntu.com/ubuntu bionic-updates/restricted amd64 Packages [206 kB]
-Get:28 http://azure.archive.ubuntu.com/ubuntu bionic-updates/restricted Translation-en [28.0 kB]
-Get:29 http://azure.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [1695 kB]
-Get:30 http://azure.archive.ubuntu.com/ubuntu bionic-updates/universe Translation-en [357 kB]
-Hit:31 http://ppa.launchpad.net/hvr/ghc/ubuntu bionic InRelease
-Hit:19 https://packagecloud.io/github/git-lfs/ubuntu bionic InRelease
-Get:32 http://dl.google.com/linux/chrome/deb stable/main amd64 Packages [1083 B]
+Ign:5 https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 InRelease
+Get:6 https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 Release [5374 B]
+Get:7 https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 Release.gpg [801 B]
+Hit:8 https://download.mono-project.com/repo/ubuntu stable-bionic InRelease
+Get:9 https://packages.microsoft.com/repos/azure-cli bionic InRelease [3964 B]
+Get:10 https://cli-assets.heroku.com/apt ./ InRelease [2879 B]
+Get:12 https://packages.microsoft.com/ubuntu/18.04/prod bionic InRelease [4002 B]
+Get:13 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+Get:14 http://packages.cloud.google.com/apt cloud-sdk InRelease [6739 B]
+Get:15 http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_18.04  InRelease [1613 B]
+Ign:16 https://dl.bintray.com/sbt/debian  InRelease
+Hit:18 http://ppa.launchpad.net/ansible/ansible/ubuntu bionic InRelease
+Get:19 https://dl.bintray.com/sbt/debian  Release [815 B]
+Get:20 http://azure.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+Get:21 http://azure.archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
+Get:11 https://packages.cloud.google.com/apt kubernetes-xenial InRelease [9383 B]
+Hit:22 http://apt.postgresql.org/pub/repos/apt bionic-pgdg InRelease
+Hit:17 https://packagecloud.io/github/git-lfs/ubuntu bionic InRelease
+Get:23 http://dl.google.com/linux/chrome/deb stable/main amd64 Packages [1083 B]
+Hit:24 http://ppa.launchpad.net/apt-fast/stable/ubuntu bionic InRelease
+Get:25 https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4/multiverse amd64 Packages [7035 B]
+Hit:26 http://ppa.launchpad.net/git-core/ppa/ubuntu bionic InRelease
+Get:27 https://packages.microsoft.com/repos/azure-cli bionic/main amd64 Packages [12.0 kB]
+Get:28 https://cli-assets.heroku.com/apt ./ Packages [620 B]
+Get:29 https://packages.microsoft.com/ubuntu/18.04/prod bionic/main amd64 Packages [148 kB]
+Hit:30 http://ppa.launchpad.net/hvr/ghc/ubuntu bionic InRelease
+Get:31 http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_18.04  Packages [6125 B]
 Get:33 http://ppa.launchpad.net/ondrej/php/ubuntu bionic InRelease [20.8 kB]
-Hit:34 http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu bionic InRelease
-Get:35 https://packages.microsoft.com/repos/azure-cli bionic/main amd64 Packages [12.0 kB]
-Get:36 https://packages.microsoft.com/ubuntu/18.04/prod bionic/main amd64 Packages [148 kB]
-Get:37 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [1453 kB]
-Get:38 http://security.ubuntu.com/ubuntu bionic-security/main Translation-en [284 kB]
-Get:39 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [184 kB]
-Get:40 http://security.ubuntu.com/ubuntu bionic-security/restricted Translation-en [24.4 kB]
-Get:41 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [1092 kB]
-Get:42 http://security.ubuntu.com/ubuntu bionic-security/universe Translation-en [244 kB]
-Get:43 https://cli-assets.heroku.com/apt ./ Packages [620 B]
-Get:44 https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4/multiverse amd64 Packages [7035 B]
-Get:45 http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_18.04  Packages [6125 B]
+Get:34 http://azure.archive.ubuntu.com/ubuntu bionic-updates/main amd64 Packages [1789 kB]
+Get:35 http://azure.archive.ubuntu.com/ubuntu bionic-updates/main Translation-en [376 kB]
+Get:36 http://azure.archive.ubuntu.com/ubuntu bionic-updates/restricted amd64 Packages [206 kB]
+Get:37 http://azure.archive.ubuntu.com/ubuntu bionic-updates/restricted Translation-en [28.0 kB]
+Get:38 http://azure.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 Packages [1695 kB]
+Get:39 http://azure.archive.ubuntu.com/ubuntu bionic-updates/universe Translation-en [357 kB]
+Hit:40 http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu bionic InRelease
+Get:41 http://security.ubuntu.com/ubuntu bionic-security/main amd64 Packages [1453 kB]
+Get:42 http://security.ubuntu.com/ubuntu bionic-security/main Translation-en [284 kB]
+Get:43 http://security.ubuntu.com/ubuntu bionic-security/restricted amd64 Packages [184 kB]
+Get:44 http://security.ubuntu.com/ubuntu bionic-security/restricted Translation-en [24.4 kB]
+Get:45 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 Packages [1092 kB]
+Get:46 http://security.ubuntu.com/ubuntu bionic-security/universe Translation-en [244 kB]
 Get:47 http://ppa.launchpad.net/ondrej/php/ubuntu bionic/main amd64 Packages [80.5 kB]
 Get:48 http://ppa.launchpad.net/ondrej/php/ubuntu bionic/main Translation-en [31.4 kB]
-Fetched 8330 kB in 4s (2254 kB/s)
+Fetched 8330 kB in 4s (2051 kB/s)
 Reading package lists...
 Selecting previously unselected package libiscsi7:amd64.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 274444 files and directories currently installed.)
@@ -350,17 +350,16 @@ ed8a5179ae11: Pulling fs layer
 f5ac6eabcca8: Pulling fs layer
 1ec39da9c97d: Waiting
 f5ac6eabcca8: Waiting
-b55332363bf1: Verifying Checksum
-b55332363bf1: Download complete
 ed8a5179ae11: Verifying Checksum
 ed8a5179ae11: Download complete
+b55332363bf1: Download complete
 9758c28807f2: Verifying Checksum
 9758c28807f2: Download complete
-1ec39da9c97d: Verifying Checksum
-1ec39da9c97d: Download complete
 9758c28807f2: Pull complete
 b55332363bf1: Pull complete
 ed8a5179ae11: Pull complete
+1ec39da9c97d: Verifying Checksum
+1ec39da9c97d: Download complete
 1ec39da9c97d: Pull complete
 f5ac6eabcca8: Verifying Checksum
 f5ac6eabcca8: Download complete

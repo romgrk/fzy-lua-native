@@ -3,7 +3,7 @@
 # romgrk, 2020-11-02 21:58
 #
 
-CC=gcc
+CC ?= gcc
 OS=$(shell uname | tr A-Z a-z)
 ifeq ($(findstring mingw,$(OS)), mingw)
     OS='windows'

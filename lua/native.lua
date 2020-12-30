@@ -13,7 +13,7 @@ local os_aliases = {
 
 local arch_aliases = {
   ['x64'] = 'x86_64',
-  ['arm64'] = 'aarch64',
+  --['arm64'] = 'aarch64',
 }
 
 local ffi = require'ffi'

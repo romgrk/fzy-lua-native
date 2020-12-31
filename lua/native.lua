@@ -13,7 +13,12 @@ local os_aliases = {
 
 local arch_aliases = {
   ['x64'] = 'x86_64',
-  ['arm64'] = 'aarch64',
+
+  -- Linux `uname -m` returns 'aarch64'
+  -- macOS `uname -m` returns 'arm64'
+  -- jit.arch returns 'arm64' always
+  -- Therefore let's use 'arm64'
+  -- ['arm64'] = 'aarch64',
 }
 
 local ffi = require'ffi'

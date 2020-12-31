@@ -9,6 +9,9 @@ ifeq ($(findstring mingw,$(OS)), mingw)
     OS='windows'
 endif
 ARCH=`uname -m`
+ifeq ($(ARCH), aarch64)
+ARCH='arm64'
+endif
 
 all:
 	$(CC) -Ofast -c -Wall -static -fpic -o ./src/match.o ./src/match.c

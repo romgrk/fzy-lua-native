@@ -4,6 +4,12 @@
 #
 
 CC ?= gcc
+
+CC_EXISTS := $(shell command -v $(CC) 2> /dev/null)
+ifndef CC_EXISTS
+CC=gcc
+endif
+
 OS=$(shell uname | tr A-Z a-z)
 ifeq ($(findstring mingw,$(OS)), mingw)
     OS='windows'

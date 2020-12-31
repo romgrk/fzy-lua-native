@@ -14,12 +14,14 @@ OS=$(shell uname | tr A-Z a-z)
 ifeq ($(findstring mingw,$(OS)), mingw)
     OS='windows'
 endif
-ARCH=`uname -m`
+
+ARCH=$(shell uname -m)
 ifeq ($(ARCH), aarch64)
 ARCH='arm64'
 endif
 
 all:
+	echo $(ARCH)
 	$(CC) -Ofast -c -Wall -static -fpic -o ./src/match.o ./src/match.c
 	$(CC) -shared -o ./static/libfzy-$(OS)-$(ARCH).so ./src/match.o
 

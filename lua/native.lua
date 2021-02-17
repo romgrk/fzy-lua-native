@@ -76,6 +76,16 @@ local function positions_to_lua_many(numbers, length, n)
   return result
 end
 
+-- @param scores - the C positions object
+-- @param length - length of scores
+-- @returns - lua array of scores, 1-indexed
+local function scores_to_lua_many(scores, length)
+  local result = {}
+  for i = 0, length - 1, 1  do
+    table.insert(result, scores[i] + 1)
+  end
+  return result
+end
 
 -- Constants
 
@@ -123,7 +133,7 @@ function fzy.positions_many(needle, haystacks)
 
   local haystacks_arg = ffi.new("const char*[" .. (length + 1) .. "]", haystacks)
 
-  local score = native.match_positions_many(
+  native.match_positions_many(
     needle,
     haystacks_arg,
     length,
@@ -131,7 +141,7 @@ function fzy.positions_many(needle, haystacks)
     positions,
     is_case_sensitive)
 
-  return positions_to_lua_many(positions, length, n), score
+  return positions_to_lua_many(positions, length, n), scores_to_lua_many(scores, length)
 end
 
 
@@ -161,8 +171,8 @@ function fzy.filter(needle, lines)
   for i = 1, #lines do
     local line = lines[i]
     if native.has_match(needle, line, false) == 1 then
-      local positions = fzy.positions(needle, line)
-      table.insert(results, { line, positions })
+      local positions, score = fzy.positions(needle, line)
+      table.insert(results, { line, positions, score })
     end
   end
   return results
@@ -177,8 +187,8 @@ function fzy.filter_many(needle, lines)
       table.insert(filtered_lines, line)
     end
   end
-  local positions = fzy.positions_many(needle, filtered_lines)
-  return positions
+
+  return fzy.positions_many(needle, filtered_lines)
 end
 
 return fzy

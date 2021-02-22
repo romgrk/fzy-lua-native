@@ -103,33 +103,33 @@ local MATCH_MAX_LENGTH = 1024
 
 local fzy = {}
 
-function fzy.has_match(needle, haystack)
-  local is_case_sensitive = false
+function fzy.has_match(needle, haystack, is_case_sensitive)
+  is_case_sensitive = is_case_sensitive or false
   return native.has_match(needle, haystack, is_case_sensitive) == 1
 end
 
-function fzy.score(needle, haystack)
-  local is_case_sensitive = false
+function fzy.score(needle, haystack, is_case_sensitive)
+  is_case_sensitive = is_case_sensitive or false
   local score = native.match_positions(needle, haystack, nil, is_case_sensitive)
   return score
 end
 
-function fzy.positions(needle, haystack)
+function fzy.positions(needle, haystack, is_case_sensitive)
   local length = #needle
   local positions = ffi.new('uint32_t[' .. length .. ']', {})
-  local is_case_sensitive = false
+  is_case_sensitive = is_case_sensitive or false
 
   local score = native.match_positions(needle, haystack, positions, is_case_sensitive)
 
   return positions_to_lua(positions, length), score
 end
 
-function fzy.positions_many(needle, haystacks)
+function fzy.positions_many(needle, haystacks, is_case_sensitive)
   local n = #needle
   local length = #haystacks
   local scores = ffi.new('double[' .. (length) .. ']', {})
   local positions = ffi.new('uint32_t[' .. (n * length) .. ']', {})
-  local is_case_sensitive = false
+  is_case_sensitive = is_case_sensitive or false
 
   local haystacks_arg = ffi.new("const char*[" .. (length + 1) .. "]", haystacks)
 
@@ -165,25 +165,27 @@ function fzy.get_score_floor()
 end
 
 
-function fzy.filter(needle, lines)
+function fzy.filter(needle, lines, is_case_sensitive)
+  is_case_sensitive = is_case_sensitive or false
   local results = {}
 
   for i = 1, #lines do
     local line = lines[i]
-    if native.has_match(needle, line, false) == 1 then
-      local positions, score = fzy.positions(needle, line)
+    if native.has_match(needle, line, is_case_sensitive) == 1 then
+      local positions, score = fzy.positions(needle, line, is_case_sensitive)
       table.insert(results, { line, positions, score })
     end
   end
   return results
 end
 
-function fzy.filter_many(needle, lines)
+function fzy.filter_many(needle, lines, is_case_sensitive)
+  is_case_sensitive = is_case_sensitive or false
   local filtered_lines = {}
 
   for i = 1, #lines do
     local line = lines[i]
-    if native.has_match(needle, line, false) == 1 then
+    if native.has_match(needle, line, is_case_sensitive) == 1 then
       table.insert(filtered_lines, line)
     end
   end

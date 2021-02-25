@@ -201,8 +201,8 @@ function fzy.filter(needle, lines)
   for i = 1, #lines do
     local line = lines[i]
     if fzy.has_match(needle, line) then
-      local positions = fzy.positions(needle, line)
-      table.insert(results, { line, positions })
+      local positions, score = fzy.positions(needle, line)
+      table.insert(results, { line, positions, score })
     end
   end
   return results

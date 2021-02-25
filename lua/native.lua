@@ -193,6 +193,4 @@ function fzy.filter_many(needle, lines, is_case_sensitive)
   return fzy.positions_many(needle, filtered_lines)
 end
 
-fzy.native = native
-
 return fzy

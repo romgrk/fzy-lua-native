@@ -14,17 +14,26 @@
 #include "config.h"
 
 int has_match(const char *needle, const char *haystack, int is_case_sensitive) {
+	int is_direct_match = 1;
+	int needle_len = 0;
 	while (*needle) {
 		char nch = *needle++;
 
 		const char accept[3] = {nch, is_case_sensitive ? 0 : toupper(nch), 0};
+		const char *new_haystack = strpbrk(haystack, accept);
 
-		if (!(haystack = strpbrk(haystack, accept))) {
+		is_direct_match = is_direct_match & ((new_haystack - haystack) == 0);
+
+		haystack = new_haystack;
+
+		if (!haystack) {
 			return 0;
 		}
 		haystack++;
+		needle_len++;
 	}
-	return 1;
+	is_direct_match = is_direct_match & (haystack[0] == '\0');
+	return 1 + is_direct_match;
 }
 
 #define SWAP(x, y, T) do { T SWAP = x; x = y; y = SWAP; } while (0)

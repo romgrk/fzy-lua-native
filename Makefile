@@ -22,8 +22,8 @@ endif
 
 all:
 	echo $(ARCH)
-	$(CC) -Ofast -c -Wall -static -fpic -o ./src/match.o ./src/match.c
-	$(CC) -shared -o ./static/libfzy-$(OS)-$(ARCH).so ./src/match.o
+	$(CC) $(CFLAGS) -Ofast -c -Wall -static -fpic -o ./src/match.o ./src/match.c
+	$(CC) $(CFLAGS) -shared -o ./static/libfzy-$(OS)-$(ARCH).so ./src/match.o
 
 
 # vim:ft=make

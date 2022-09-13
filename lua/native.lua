@@ -141,7 +141,15 @@ function fzy.positions_many(needle, haystacks, is_case_sensitive)
     positions,
     is_case_sensitive)
 
-  return positions_to_lua_many(positions, length, n), scores_to_lua_many(scores, length)
+  local result = {}
+  for i = 0, length - 1, 1  do
+    local current = {}
+    for j = 0, n - 1 do
+      table.insert(current, positions[i * n + j] + 1)
+    end
+    table.insert(result, { haystacks[i + 1], current, scores[i] })
+  end
+  return result
 end
 
 

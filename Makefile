@@ -20,15 +20,10 @@ ifeq ($(ARCH), aarch64)
 ARCH='arm64'
 endif
 
-PARALLEL_FLAGS=""
-ifneq ($(OS), windows)
-	PARALLEL_FLAGS=-DPARALLEL -fopenmp
-endif
-
 all:
 	echo $(ARCH)
-	$(CC) $(CFLAGS) $(PARALLEL_FLAGS) -Ofast -c -Wall -static -fpic -o ./src/match.o ./src/match.c
-	$(CC) $(CFLAGS) $(PARALLEL_FLAGS) -shared -o ./static/libfzy-$(OS)-$(ARCH).so ./src/match.o
+	$(CC) $(CFLAGS) -Ofast -c -Wall -static -fpic -o ./src/match.o ./src/match.c
+	$(CC) $(CFLAGS) -shared -o ./static/libfzy-$(OS)-$(ARCH).so ./src/match.o
 
 
 # vim:ft=make

@@ -33,7 +33,6 @@ local library_path = dirname .. '../static/libfzy-' .. os .. '-' .. arch .. '.so
 
 local native = ffi.load(library_path)
 
-
 ffi.cdef[[
 int has_match(const char *needle, const char *haystack, int is_case_sensitive);
 
@@ -47,6 +46,7 @@ void match_many(const char *needle,
     double *scores,
     int is_case_sensitive
   );
+
 double match_positions(const char *needle, const char *haystack, uint32_t *positions, int is_case_sensitive);
 void match_positions_many(
   const char *needle,
@@ -88,7 +88,7 @@ end
 local function scores_to_lua_many(scores, length)
   local result = {}
   for i = 0, length - 1, 1  do
-    table.insert(result, scores[i] + 1)
+    result[i + 1] = scores[i] + 1
   end
   return result
 end
@@ -116,7 +116,8 @@ end
 
 function fzy.score(needle, haystack, is_case_sensitive)
   is_case_sensitive = is_case_sensitive or false
-  return native.match(needle, haystack, nil, is_case_sensitive)
+  local score = native.match(needle, haystack, is_case_sensitive)
+  return score + 1
 end
 
 function fzy.match_many(needle, lines, is_case_sensitive)
@@ -132,7 +133,7 @@ function fzy.match_many(needle, lines, is_case_sensitive)
 
   local length = #filtered_lines
   local scores = ffi.new('double[' .. (length) .. ']', {})
-  local haystacks_arg = ffi.new("const char*[" .. (length) .. "]", filtered_lines)
+  local haystacks_arg = ffi.new("const char*[" .. (length + 1) .. "]", filtered_lines)
   native.match_many(
     needle,
     haystacks_arg,
@@ -142,7 +143,7 @@ function fzy.match_many(needle, lines, is_case_sensitive)
 
   -- Now build up the scores / lines array
   for i = 1, length do
-    filtered_lines[i] = { filtered_lines[i], scores[i] + 1 }
+    filtered_lines[i] = { filtered_lines[i], scores[i - 1] + 1 }
   end
 
   return filtered_lines

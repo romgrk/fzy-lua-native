@@ -8,6 +8,10 @@
 #include <math.h>
 #include <stdlib.h>
 
+#ifdef PARALLEL
+#include <omp.h>
+#endif
+
 #include "match.h"
 #include "bonus.h"
 
@@ -270,6 +274,9 @@ void match_positions_many(const char *needle,
 	) {
 	uint32_t needle_len = strlen(needle);
 
+#ifdef PARALLEL
+#pragma omp parallel for
+#endif
 	for (uint32_t i = 0; i < length; i++) {
 		uint32_t *current_positions = &positions[i * needle_len];
 		score_t score = match_positions(needle, haystacks[i], current_positions, is_case_sensitive);

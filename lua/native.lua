@@ -64,7 +64,7 @@ void match_positions_many(
 local function positions_to_lua(positions, length)
   local result = {}
   for i = 0, length - 1, 1  do
-    table.insert(result, positions[i] + 1)
+    result[i + 1] = positions[i] + 1
   end
   return result
 end
@@ -127,7 +127,7 @@ function fzy.match_many(needle, lines, is_case_sensitive)
   for i = 1, #lines do
     local line = lines[i]
     if native.has_match(needle, line, is_case_sensitive) == 1 then
-      table.insert(filtered_lines, line)
+      filtered_lines[#filtered_lines + 1] = line
     end
   end
 
@@ -180,9 +180,9 @@ function fzy.positions_many(needle, haystacks, is_case_sensitive)
   for i = 0, length - 1, 1  do
     local current = {}
     for j = 0, n - 1 do
-      table.insert(current, positions[i * n + j] + 1)
+      current[j+1] = positions[i * n + j] + 1
     end
-    table.insert(result, { haystacks[i + 1], current, scores[i] + 1 })
+    result[i+1] = { haystacks[i + 1], current, scores[i] + 1 }
   end
   return result
 end

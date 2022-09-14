@@ -88,7 +88,7 @@ end
 local function scores_to_lua_many(scores, length)
   local result = {}
   for i = 0, length - 1, 1  do
-    table.insert(result, scores[i] + 1)
+    table.insert(result, scores[i])
   end
   return result
 end
@@ -143,7 +143,7 @@ function fzy.match_many(needle, lines, is_case_sensitive)
 
   -- Now build up the scores / lines array
   for i = 1, length do
-    filtered_lines[i] = { filtered_lines[i], scores[i] + 1 }
+    filtered_lines[i] = { filtered_lines[i], scores[i] }
   end
 
   return filtered_lines

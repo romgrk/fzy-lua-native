@@ -116,8 +116,7 @@ end
 
 function fzy.score(needle, haystack, is_case_sensitive)
   is_case_sensitive = is_case_sensitive or false
-  local score = native.match_positions(needle, haystack, nil, is_case_sensitive)
-  return score
+  return native.match(needle, haystack, nil, is_case_sensitive)
 end
 
 function fzy.match_many(needle, lines, is_case_sensitive)

@@ -1,4 +1,4 @@
-#! /usr/bin/env lua
+#! /usr/bin/env luajit
 --
 -- test.lua
 -- Copyright (C) 2020 romgrk <romgrk@arch>
@@ -6,20 +6,26 @@
 -- Distributed under terms of the MIT license.
 --
 
-local export = require'lua.init'
+local export = require'lua.native'
 
-local function print_table(tbl)
-  if type(tbl) ~= 'table' then
-    print(tbl)
-    return
+local function assert(val, msg)
+  if not val then
+    error(msg)
   end
-  local result = '{ '
-  for k, v in pairs(tbl) do
-    result = result .. k .. ' = ' .. tostring(v) .. (i == #tbl and '' or ', ')
-  end
-  result = result .. ' }'
-  print(result)
 end
 
-print_table(export)
-print_table(export.filter)
+local prompt = "f"
+
+local CASES = {
+  "foo",
+  "bar",
+  "baz",
+  "barf"
+}
+
+local results = export.match_many(prompt, CASES, false)
+
+for _, r in ipairs(results) do
+  local score = export.score(prompt, r[1])
+  assert(r[2] == score, string.format("%s: %s != %s", r[1], tostring(score), tostring(r[2])))
+end

@@ -1,1 +1,1 @@
-return require('.init')
+return require('init')

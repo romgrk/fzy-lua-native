@@ -33,3 +33,9 @@ The C version of fzy in that repo contains 2 differences with the original:
    for needle, instead of on each iteration of the loop.
  - `match_positions` uses `uint32_t` for positions, because `size_t`
    (`uint64_t`) doesn't map well to lua types.
+
+### Usage
+
+The fzy algorithm *requires* that you call `fzy.has_match(string, needle)` to
+prefilter all your matches. Only after that is done you can call the other functions
+such as `fzy.positions(string, needle)`.

@@ -1,1 +1,5 @@
 *.o
+static/
+build/
+shared/
+*.so

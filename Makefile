@@ -20,10 +20,14 @@ ifeq ($(ARCH), aarch64)
 ARCH='arm64'
 endif
 
-all:
-	echo $(ARCH)
-	$(CC) $(CFLAGS) -Ofast -c -Wall -static -fpic -o ./src/match.o ./src/match.c
-	$(CC) $(CFLAGS) -shared -o ./static/libfzy-$(OS)-$(ARCH).so ./src/match.o
+all: ./static/libfzy-$(OS)-$(ARCH).so
+
+./static/libfzy-$(OS)-$(ARCH).so: ./src/match.c
+	$(CC) $(CFLAGS) -Ofast -c -Wall -static -fpic -o ./src/match.o $<
+	$(CC) $(CFLAGS) -shared -o $@ ./src/match.o
+
+clean:
+	rm -f **/*.o
 
 
 # vim:ft=make

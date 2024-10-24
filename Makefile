@@ -13,11 +13,15 @@ endif
 OS=$(shell uname | tr A-Z a-z)
 ifeq ($(findstring mingw,$(OS)), mingw)
     OS='windows'
+else ifeq ($(OS), freebsd)
+    OS='bsd'
 endif
 
 ARCH=$(shell uname -m)
 ifeq ($(ARCH), aarch64)
 ARCH='arm64'
+else ifeq ($(ARCH), amd64)
+ARCH='x86_64'
 endif
 
 all: ./static/libfzy-$(OS)-$(ARCH).so
